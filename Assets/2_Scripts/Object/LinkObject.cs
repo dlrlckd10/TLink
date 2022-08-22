@@ -11,9 +11,11 @@ public class LinkObject : MonoBehaviour
     string ClipName;
     string ClipStat;
     string ClipURL;
+    int IsdollNumber;
 
-    public void InitSet(string ClipName , string ClipStat  , string ClipURL)
+    public void InitSet(int IsdollNumber, string ClipName , string ClipStat  , string ClipURL)
     {
+        this.IsdollNumber = IsdollNumber;
         this.ClipName = ClipName;
         this.ClipStat = ClipStat;
         this.ClipURL = ClipURL;

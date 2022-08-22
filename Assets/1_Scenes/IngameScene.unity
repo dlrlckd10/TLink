@@ -531,7 +531,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Initpos: {fileID: 2010510042}
   ClipPrefab: {fileID: 3512463122065097247, guid: d86a7b5cbea2f184c8709419462c5f6b, type: 3}
-  ClipParent: {fileID: 202317393}
+  ClipParent: {fileID: 34654318}
 --- !u!4 &882793815
 Transform:
   m_ObjectHideFlags: 0
