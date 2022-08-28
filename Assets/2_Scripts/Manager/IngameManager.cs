@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+//
+using System.Runtime.Serialization.Json;
+using System.IO;
+//
 public class IngameManager : MonoBehaviour
 {
     public static IngameManager _uniqueInstance;
@@ -21,9 +24,14 @@ public class IngameManager : MonoBehaviour
 
     //데이터 저장. List[(int)INE]<Dictionary>>
     //             ClipName           URL , StatusString
-    List<Dictionary<string, string>> KindClipList = new List<Dictionary<string, string>>();
+    public List<Dictionary<string, string>> KindClipList = new List<Dictionary<string, string>>();
     
-    public Dictionary<string, string> URLAndStatusDic = new Dictionary<string, string>();
+    public Dictionary<string, string> INE_ClipURLAndStatusDic = new Dictionary<string, string>();
+    public Dictionary<string, string> JING_ClipURLAndStatusDic = new Dictionary<string, string>();
+    public Dictionary<string, string> LIL_ClipURLAndStatusDic = new Dictionary<string, string>();
+    public Dictionary<string, string> Ju_ClipURLAndStatusDic = new Dictionary<string, string>();
+    public Dictionary<string, string> GO_ClipURLAndStatusDic = new Dictionary<string, string>();
+    public Dictionary<string, string> VII_ClipURLAndStatusDic = new Dictionary<string, string>();
 
 
     // Xml로 전체 파싱해서 
@@ -47,45 +55,52 @@ public class IngameManager : MonoBehaviour
         int Isdollnum = 0;
         //Test
         Lobj.InitSet(Isdollnum,ClipName, ClipEx, Url);
+        //DataContractJsonSerializer serilizer = new DataContractJsonSerializer(typeof(Dictionary<string, string>));
         
-        
-        //URLAndStatusDic[Url] = ClipEx;
-        //KindClipList[Isdollnum].Add(ClipName);
-        //
+
     }
 
-    public void AddTLink(int KindClip)
+    // 
+    public void AddTLink(int KindClip , string ClipName , string ClipURL)
     {
-        //Test
-        //KindClipList[KindClip] = URLAndStatusDic;
-        KindClipList.Add(URLAndStatusDic);
-        for(int n = 0; n <KindClipList.Count;n++)
+        switch(KindClip)
         {
-            //Debug.Log("Test 1 : " + KindClipList[n].Keys + KindClipList[n].Values.ToString());
-            //Debug.Log("Test 2 : " + KindClipList[n]);
-            //Debug.Log("Test 3 : " + KindClipList.Count);
-            //Debug.Log("Test 4 : " + KindClipList[n].Keys.Count);
+            case 0:
+                INE_ClipURLAndStatusDic.Add(ClipName, ClipURL);
 
-            foreach(KeyValuePair<string , string > pair in KindClipList[n])
-            {
-                Debug.Log("Clip Name : " + pair.Key + "Clip URL : " + pair.Value);
-            }
-           
+                break;
+            case 1:
+                JING_ClipURLAndStatusDic.Add(ClipName, ClipURL);
+                break;
+            case 2:
+                LIL_ClipURLAndStatusDic.Add(ClipName, ClipURL);
+                break;
+            case 3:
+                Ju_ClipURLAndStatusDic.Add(ClipName, ClipURL);
+                break;
+            case 4:
+                GO_ClipURLAndStatusDic.Add(ClipName, ClipURL);
+                break;
+            case 5:
+                VII_ClipURLAndStatusDic.Add(ClipName, ClipURL);
+                break;
         }
-
-        //
-
-
+        //foreach (KeyValuePair<string, string> pair in INE_ClipURLAndStatusDic)
+        //{
+        //    Debug.Log("Clip Name : " + pair.Key + "Clip URL : " + pair.Value);
+        //}
     }
 
-    //void DataSave(int num , )
-
-    // Update is called once per frame
-    void Update()
+    void SaveTest()
     {
-        
+        foreach(KeyValuePair<string , string> temp in INE_ClipURLAndStatusDic)
+        {
+
+        }
     }
 
+
+    //입력 함수
     public void InputButton()
     {
         Instantiate(InputUIWnd, gameObject.transform.parent);
