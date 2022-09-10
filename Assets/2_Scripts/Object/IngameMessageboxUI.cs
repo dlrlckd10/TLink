@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 public class IngameMessageboxUI : MonoBehaviour
@@ -26,7 +25,7 @@ public class IngameMessageboxUI : MonoBehaviour
         gameObject.SetActive(true);
         msgBoxtxt.text = str;
         StartCoroutine(DelayCoroutine());
-        
+
     }
     IEnumerator DelayCoroutine()
     {

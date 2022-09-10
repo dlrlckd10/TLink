@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,15 +7,13 @@ public class LinkObject : MonoBehaviour
     [SerializeField] Text nametxt;
     //[SerializeField] Text Stattxt;
     string ClipName;
-    string ClipStat;
     string ClipURL;
     int IsdollNumber;
 
-    public void InitSet(int IsdollNumber, string ClipName , string ClipStat  , string ClipURL)
+    public void InitSet(int IsdollNumber, string ClipName, string ClipURL)
     {
         this.IsdollNumber = IsdollNumber;
         this.ClipName = ClipName;
-        this.ClipStat = ClipStat;
         this.ClipURL = ClipURL;
         nametxt.text = ClipName;
     }
@@ -28,7 +24,7 @@ public class LinkObject : MonoBehaviour
         {
             Application.OpenURL(ClipURL);
         }
-        catch(System.NullReferenceException exc)
+        catch (System.NullReferenceException exc)
         {
             Debug.Log(exc);
         }
