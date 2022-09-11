@@ -18,28 +18,35 @@ public class InputUI : MonoBehaviour
         {
             if (!(0 <= ClipKind && ClipKind <= 5))
             {
-                IngameMessageboxUI._instance.IngameMessageTxt("클립 종류를 잘못 입력했습니다.\n 0 ~ 5 정수로 입력하세요.");
+                IngameMessageboxUI._instance.IngameMessageTxt("0~5 정수 입력!");
                 Destroy(DestroyObj.gameObject, 2f);
                 return;
             }
         }
         else
         {
-            IngameMessageboxUI._instance.IngameMessageTxt("클립 종류를 잘못 입력했습니다.\n 0 ~ 5 정수로 입력하세요.");
+            IngameMessageboxUI._instance.IngameMessageTxt("0~5 정수 입력!");
             Destroy(DestroyObj.gameObject, 2f);
             return;
         }
         ClipName = _ClipNameInput.text;
         ClipUrl = _ClipURLInput.text;
+        if (ClipUrl == string.Empty || ClipName == string.Empty)
+        {
+            IngameMessageboxUI._instance.IngameMessageTxt("비어있는\n항목 있음!");
+            Destroy(DestroyObj.gameObject, 2f);
+            return;
+        }
 
         if (ContainKeyClipName(ClipKind, ClipName))
         {
-            IngameMessageboxUI._instance.IngameMessageTxt("'" + ClipName + "' 중복된 클립 이름입니다.");
+            IngameMessageboxUI._instance.IngameMessageTxt("중복된\n클립 이름!");
             Destroy(DestroyObj.gameObject, 2f);
+            return;
         }
         else
         {
-            IngameMessageboxUI._instance.IngameMessageTxt(ClipName + " 저장되었습니다.");
+            IngameMessageboxUI._instance.IngameMessageTxt("저장 완료!");
             IngameManager._instance.AddTLink((Utillity.Isdoll)ClipKind, ClipName, ClipUrl);
             Destroy(DestroyObj.gameObject);
         }
@@ -72,7 +79,7 @@ public class InputUI : MonoBehaviour
                 else
                     return false;
             case 3:
-                if (IngameManager._instance.Ju_ClipNameAndURL.ContainsKey(str))
+                if (IngameManager._instance.JU_ClipNameAndURL.ContainsKey(str))
                 {
                     return true;
                 }

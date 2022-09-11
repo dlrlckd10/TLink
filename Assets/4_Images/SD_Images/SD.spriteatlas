@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SD
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 4096
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 2
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 8
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 1
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 2790fe18a4f674d4a92dde384a092f88, type: 3}
+    - {fileID: 2800000, guid: caaaa53f45225b4478e3ba38ace50f9e, type: 3}
+    - {fileID: 2800000, guid: 802da6e5a26a25d41b76b55da636e707, type: 3}
+    - {fileID: 2800000, guid: 185d47c1d2c734d45b2519f270443b76, type: 3}
+    - {fileID: 2800000, guid: fd49ebdd56b1d96479f54f13ad02c994, type: 3}
+    - {fileID: 2800000, guid: ab6c8ec9928707f48bd709450cd11546, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 185d47c1d2c734d45b2519f270443b76, type: 3}
+  - {fileID: 21300000, guid: 802da6e5a26a25d41b76b55da636e707, type: 3}
+  - {fileID: 21300000, guid: 2790fe18a4f674d4a92dde384a092f88, type: 3}
+  - {fileID: 21300000, guid: ab6c8ec9928707f48bd709450cd11546, type: 3}
+  - {fileID: 21300000, guid: fd49ebdd56b1d96479f54f13ad02c994, type: 3}
+  - {fileID: 21300000, guid: caaaa53f45225b4478e3ba38ace50f9e, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - "\uC544\uC774\uB124\uB2D8_\uC5EC\uAE30_\uBD10\uC8FC\uC138\uC694"
+  - "\uC138\uAD6C\uB2E4"
+  - Build_Image_Jururu
+  - "\uCC60\uB2C8"
+  - "\uC9D5\uBC84\uAC70_\u314B\u314E"
+  - "\uBBF8\uB2C8\uB9B4\uD30C"
+  m_RenderDataMap: {}
+  m_Tag: SD
+  m_IsVariant: 0

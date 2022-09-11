@@ -8,9 +8,6 @@ public class IngameMessageboxUI : MonoBehaviour
     {
         get { return _uniqueInstance; }
     }
-
-
-
     Text msgBoxtxt;
     void Awake()
     {
