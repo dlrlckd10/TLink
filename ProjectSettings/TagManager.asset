@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - MapBG
+  - ScrollView
+  - DeleteParent
   layers:
   - Default
   - TransparentFX

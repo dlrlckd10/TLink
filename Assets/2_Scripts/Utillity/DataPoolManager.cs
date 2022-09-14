@@ -7,6 +7,7 @@ public class DataPoolManager : MonoBehaviour
 {
     [SerializeField] Sprite[] _BG;
     [SerializeField] Sprite[] _ClipImage;
+    [SerializeField] GameObject _DeleteWndUI;
     static DataPoolManager _uniqueIntance;
     public static DataPoolManager _instance
     {
@@ -28,6 +29,10 @@ public class DataPoolManager : MonoBehaviour
     public Sprite GetClipImage(int eIsedoll)
     {
         return _ClipImage[eIsedoll];
+    }
+    public GameObject GetDeleteWnd()
+    {
+        return _DeleteWndUI;
     }
 
     

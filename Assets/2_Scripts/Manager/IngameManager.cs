@@ -45,8 +45,8 @@ public class IngameManager : MonoBehaviour
     public List<string> VII_URLNameList = new List<string>();
 
     //Clip 간격
-    float ClipDistance = -250f;
-
+    float ClipDistance = -200f;
+    public ScrollViewController _scrollView;
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -216,7 +216,6 @@ public class IngameManager : MonoBehaviour
     //현재의 자료구조 저장 함수
     public void SaveIsdolClip(Utillity.Isdoll eIsedoll)
     {
-        
         switch (eIsedoll)
         {
             case Utillity.Isdoll.INE:
@@ -321,7 +320,10 @@ public class IngameManager : MonoBehaviour
     // 클립 리셋 버튼
     public void ClipReset(Utillity.Isdoll eIsedoll)
     {
+        GameObject scollobj = GameObject.FindGameObjectWithTag("ScrollView");
+        _scrollView = scollobj.GetComponent<ScrollViewController>();
         Vector3 DistancPos = Initpos.position;
+        _scrollView.ResetSpace();
         //현재 생성된 자식 객체 삭제.
         if(ClipParent.childCount != 0)
             DeleteClipList();
@@ -330,79 +332,63 @@ public class IngameManager : MonoBehaviour
             case Utillity.Isdoll.INE:
                 for (int n = 0; n < INE_ClipNameAndURL.Count; n++)
                 {
-                    GameObject go = Instantiate(ClipPrefab, DistancPos, Quaternion.identity, ClipParent);
-                    LinkObject Lobj = go.GetComponent<LinkObject>();
                     int Isdollnum = (int)Utillity.Isdoll.INE;
                     string ClipName = INE_URLNameList[n].ToString();
                     string Url = INE_ClipNameAndURL[INE_URLNameList[n].ToString()];
-                    Lobj.InitSet(Isdollnum, ClipName, Url);
-                    DistancPos += new Vector3(0f, ClipDistance, 0f);
+
+                    _scrollView.AddSpace(ClipPrefab, Isdollnum, ClipName, Url, ClipDistance);
                 }
                 break;
             case Utillity.Isdoll.JING:
                 for (int n = 0; n < JING_ClipNameAndURL.Count; n++)
                 {
-                    GameObject go = Instantiate(ClipPrefab, DistancPos, Quaternion.identity, ClipParent);
-                    LinkObject Lobj = go.GetComponent<LinkObject>();
                     int Isdollnum = (int)Utillity.Isdoll.JING;
                     string ClipName = JING_URLNameList[n].ToString();
                     string Url = JING_ClipNameAndURL[JING_URLNameList[n].ToString()];
-                    Lobj.InitSet(Isdollnum, ClipName, Url);
-                    DistancPos += new Vector3(0f, ClipDistance, 0f);
+                    _scrollView.AddSpace(ClipPrefab, Isdollnum, ClipName , Url , ClipDistance);
                 }
                 break;
             case Utillity.Isdoll.LiLL:
                 for (int n = 0; n < LIL_ClipNameAndURL.Count; n++)
                 {
-                    GameObject go = Instantiate(ClipPrefab, DistancPos, Quaternion.identity, ClipParent);
-                    LinkObject Lobj = go.GetComponent<LinkObject>();
                     int Isdollnum = (int)Utillity.Isdoll.LiLL; 
                     string ClipName = LIL_URLNameList[n].ToString(); 
                     string Url = LIL_ClipNameAndURL[LIL_URLNameList[n].ToString()];
-                    Lobj.InitSet(Isdollnum, ClipName, Url);
-                    DistancPos += new Vector3(0f, ClipDistance, 0f);
+                    _scrollView.AddSpace(ClipPrefab, Isdollnum, ClipName, Url, ClipDistance);
                 }
                 break;
             case Utillity.Isdoll.JU:
                 for (int n = 0; n < JU_ClipNameAndURL.Count; n++) 
                 {
-                    GameObject go = Instantiate(ClipPrefab, DistancPos, Quaternion.identity, ClipParent);
-                    LinkObject Lobj = go.GetComponent<LinkObject>();
                     int Isdollnum = (int)Utillity.Isdoll.JU; 
                     string ClipName = JU_URLNameList[n].ToString(); 
                     string Url = JU_ClipNameAndURL[JU_URLNameList[n].ToString()];
-                    Lobj.InitSet(Isdollnum, ClipName, Url);
-                    DistancPos += new Vector3(0f, ClipDistance, 0f);
+                    _scrollView.AddSpace(ClipPrefab, Isdollnum, ClipName, Url, ClipDistance);
                 }
                 break;
             case Utillity.Isdoll.Go:
-                for (int n = 0; n < GO_ClipNameAndURL.Count; n++) //
+                for (int n = 0; n < GO_ClipNameAndURL.Count; n++) 
                 {
-                    GameObject go = Instantiate(ClipPrefab, DistancPos, Quaternion.identity, ClipParent); 
-                    LinkObject Lobj = go.GetComponent<LinkObject>();
-                    int Isdollnum = (int)Utillity.Isdoll.Go; //
-                    string ClipName = GO_URLNameList[n].ToString(); //
-                    string Url = GO_ClipNameAndURL[GO_URLNameList[n].ToString()]; // //
-                    Lobj.InitSet(Isdollnum, ClipName, Url);
-                    DistancPos += new Vector3(0f, ClipDistance, 0f);
+                    int Isdollnum = (int)Utillity.Isdoll.Go; 
+                    string ClipName = GO_URLNameList[n].ToString(); 
+                    string Url = GO_ClipNameAndURL[GO_URLNameList[n].ToString()];
+                    _scrollView.AddSpace(ClipPrefab, Isdollnum, ClipName, Url, ClipDistance);
+
                 }
                 break;
             case Utillity.Isdoll.VII:
                 for (int n = 0; n < VII_ClipNameAndURL.Count; n++) 
                 {
-                    GameObject go = Instantiate(ClipPrefab, DistancPos, Quaternion.identity, ClipParent);
-                    LinkObject Lobj = go.GetComponent<LinkObject>();
                     int Isdollnum = (int)Utillity.Isdoll.VII; 
                     string ClipName = VII_URLNameList[n].ToString(); 
-                    string Url = VII_ClipNameAndURL[VII_URLNameList[n].ToString()]; 
-                    Lobj.InitSet(Isdollnum, ClipName, Url);
-                    DistancPos += new Vector3(0f, ClipDistance, 0f);
+                    string Url = VII_ClipNameAndURL[VII_URLNameList[n].ToString()];
+                    _scrollView.AddSpace(ClipPrefab, Isdollnum, ClipName, Url, ClipDistance);
                 }
                 break;
         }
     }
 
-    // 리셋 시 기존 클립 삭제 함수
+    // 리셋 시 기존 생성된 클립 프리펩 삭제 함수
     void DeleteClipList()
     {
         for (int n = 0; n < ClipParent.childCount; n++)
@@ -578,19 +564,124 @@ public class IngameManager : MonoBehaviour
         jsonWriter.WriteArrayEnd(); // 전체 대괄호 닫기
         jsonWriter.WriteObjectEnd(); // 전체 중괄호 닫기.
     }
+
     // 사용자 클립 삭제 함수.
     public void DeleteClip(Utillity.Isdoll eIsedoll , string ClipName)
     {
-        // 1.종류에 따른 매개변수로 이용
-        // 2.이름으로 찾은 Diction와 List 삭제
-        // 3.다시 두가지를 Dic에 저장
-        // 4.새로 저장
-        // 5.리셋
-    }
+        DicAndListDelete(eIsedoll, ClipName);
+        // 다시 Json으로 저장.
+        SaveIsdolClip(eIsedoll);
+        // 리셋
+        ClipReset(eIsedoll);
 
+    }
+    //자료 구조 삭제함수,
+    public void DicAndListDelete(Utillity.Isdoll eIsodoll, string ClipName)
+    {
+        Debug.Log(eIsodoll); // INE
+        Debug.Log(ClipName); // null
+        switch (eIsodoll)
+        {
+            case Utillity.Isdoll.INE:
+                if (INE_ClipNameAndURL.ContainsKey(ClipName))
+                {
+                    INE_ClipNameAndURL.Remove(ClipName);
+                    int n = INE_URLNameList.FindIndex(0, INE_URLNameList.Count, element => element == ClipName);
+                    if (n != -1)
+                        INE_URLNameList.RemoveAt(n);
+                    else
+                        Debug.Log("없는 요소입니다.");
+                }
+                else
+                {
+                    Debug.LogFormat("{0} 클립은 존재 하지 않습니다.", ClipName);
+                }
+                break;
+            case Utillity.Isdoll.JING:
+                if (JING_ClipNameAndURL.ContainsKey(ClipName))
+                {
+                    JING_ClipNameAndURL.Remove(ClipName);
+                    int n = JING_URLNameList.FindIndex(0, JING_URLNameList.Count, element => element == ClipName);
+                    if (n != -1)
+                        JING_URLNameList.RemoveAt(n);
+                    else
+                        Debug.Log("없는 요소입니다.");
+                }
+                else
+                {
+                    Debug.LogFormat("{0} 클립은 존재 하지 않습니다.", ClipName);
+                }
+                break;
+            case Utillity.Isdoll.LiLL:
+                if (LIL_ClipNameAndURL.ContainsKey(ClipName))
+                {
+                    LIL_ClipNameAndURL.Remove(ClipName);
+                    int n = LIL_URLNameList.FindIndex(0, LIL_URLNameList.Count, element => element == ClipName);
+                    if (n != -1)
+                        LIL_URLNameList.RemoveAt(n);
+                    else
+                        Debug.Log("없는 요소입니다.");
+                }
+                else
+                {
+                    Debug.LogFormat("{0} 클립은 존재 하지 않습니다.", ClipName);
+                }
+                break;
+            case Utillity.Isdoll.JU:
+                if (JU_ClipNameAndURL.ContainsKey(ClipName))
+                {
+                    JU_ClipNameAndURL.Remove(ClipName);
+                    int n = JU_URLNameList.FindIndex(0, JU_URLNameList.Count, element => element == ClipName);
+                    if (n != -1)
+                        JU_URLNameList.RemoveAt(n);
+                    else
+                        Debug.Log("없는 요소입니다.");
+                }
+                else
+                {
+                    Debug.LogFormat("{0} 클립은 존재 하지 않습니다.", ClipName);
+                }
+                break;
+            case Utillity.Isdoll.Go:
+                if (GO_ClipNameAndURL.ContainsKey(ClipName))
+                {
+                    GO_ClipNameAndURL.Remove(ClipName);
+                    int n = GO_URLNameList.FindIndex(0, GO_URLNameList.Count, element => element == ClipName);
+                    if (n != -1)
+                        GO_URLNameList.RemoveAt(n);
+                    else
+                        Debug.Log("없는 요소입니다.");
+                }
+                else
+                {
+                    Debug.LogFormat("{0} 클립은 존재 하지 않습니다.", ClipName);
+                }
+                break;
+            case Utillity.Isdoll.VII:
+                if (VII_ClipNameAndURL.ContainsKey(ClipName))
+                {
+                    VII_ClipNameAndURL.Remove(ClipName);
+                    int n = VII_URLNameList.FindIndex(0, VII_URLNameList.Count, element => element == ClipName);
+                    if (n != -1)
+                        VII_URLNameList.RemoveAt(n);
+                    else
+                        Debug.Log("없는 요소입니다.");
+                }
+                else
+                {
+                    Debug.LogFormat("{0} 클립은 존재 하지 않습니다.", ClipName);
+                }
+                break;
+        }
+    }
     public void ExitBtn()
     {
-        // 종료버튼
+        
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 
     //입력 함수
@@ -598,4 +689,5 @@ public class IngameManager : MonoBehaviour
     {
         Instantiate(InputUIWnd, InputUIParent.parent);
     }
+
 }
