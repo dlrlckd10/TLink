@@ -26,7 +26,7 @@ public class IngameMessageboxUI : MonoBehaviour
     }
     IEnumerator DelayCoroutine()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.2f);
         gameObject.SetActive(false);
         yield return null;
     }

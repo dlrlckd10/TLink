@@ -23,7 +23,7 @@ public class DeleteWnd : MonoBehaviour
     public void OkBtn()
     {
         IngameManager._instance.DeleteClip(_eisdoll, _ClipName);
-        Destroy(gameObject, 1f);
+        Destroy(gameObject, 0.5f);
         
     }
     //Cancel¹öÆ°

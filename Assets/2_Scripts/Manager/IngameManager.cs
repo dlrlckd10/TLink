@@ -55,28 +55,89 @@ public class IngameManager : MonoBehaviour
 
     void Start()
     {
+#if(UNITY_EDITOR)
         FlieLoad();
+#else
+        string path = Application.persistentDataPath;
+        WindowFileLoad(path);
+#endif
         GameObject go = GameObject.FindGameObjectWithTag("MapBG");
         _bg = go.transform.GetComponent<Image>();
         _bg.sprite = DataPoolManager._instance.GetRandomBG();
     }
 
-    //전체 최초 파일 로드.
+    //빌드 후 전체 로드 함수.
+    public void WindowFileLoad(string path)
+    {
+        //아이네 파일 읽기. 
+        if (File.Exists(path + "/INEDic.Json") && File.Exists(path + "/INEList.Json"))
+        {
+            string DicJsonStr = File.ReadAllText(path + "/INEDic.Json");
+            string LIstJsonStr = File.ReadAllText(path + "/INEList.Json");
+            if (DicJsonStr != null || LIstJsonStr != null)
+            {
+                JsonLoad(Utillity.Isdoll.INE, DicJsonStr, LIstJsonStr);
+            }
+        }
+        //징버거 파일 읽기
+        if (File.Exists(path + "/JingburgerDic.Json") && File.Exists(path + "/JingburgerList.Json"))
+        {
+            string DicJsonStr = File.ReadAllText(path + "/JingburgerDic.Json");
+            string LIstJsonStr = File.ReadAllText(path + "/JingburgerList.Json");
+            if (DicJsonStr != null || LIstJsonStr != null)
+            {
+                JsonLoad(Utillity.Isdoll.JING , DicJsonStr, LIstJsonStr);
+            }
+        }
+        //릴파 파일 읽기.
+        if (File.Exists(path + "/LilpaDic.Json") && File.Exists(path + "/LilpaList.Json"))
+        {
+            string DicJsonStr = File.ReadAllText(path + "/LilpaDic.Json");
+            string LIstJsonStr = File.ReadAllText(path + "/LilpaList.Json");
+            if (DicJsonStr != null || LIstJsonStr != null)
+            {
+                JsonLoad(Utillity.Isdoll.LiLL, DicJsonStr, LIstJsonStr);
+            }
+        }
+        //주르르 파일 읽기.
+        if (File.Exists(path + "/JururuDic.Json") && File.Exists(path + "/JururuList.Json"))
+        {
+            string DicJsonStr = File.ReadAllText(path + "/JururuDic.Json");
+            string LIstJsonStr = File.ReadAllText(path + "/JururuList.Json");
+            if (DicJsonStr != null || LIstJsonStr != null)
+            {
+                JsonLoad(Utillity.Isdoll.JU, DicJsonStr, LIstJsonStr);
+            }
+        }
+        //고세구 파일 읽기.
+        if (File.Exists(path + "/GoseguDic.Json") && File.Exists(path + "/GoseguList.Json")) // //
+        {
+            string DicJsonStr = File.ReadAllText(path + "/GoseguDic.Json"); //
+            string LIstJsonStr = File.ReadAllText(path + "/GoseguList.Json"); // 
+            if (DicJsonStr != null || LIstJsonStr != null)
+            {
+                JsonLoad(Utillity.Isdoll.Go, DicJsonStr, LIstJsonStr);
+            }
+        }
+        //비챤 파일 읽기.
+        if (File.Exists(path + "/ViichanDic.Json") && File.Exists(path + "/ViichanList.Json")) // //
+        {
+            string DicJsonStr = File.ReadAllText(path + "/ViichanDic.Json"); //
+            string LIstJsonStr = File.ReadAllText(path + "/ViichanList.Json"); // 
+            if (DicJsonStr != null || LIstJsonStr != null)
+            {
+                JsonLoad(Utillity.Isdoll.VII, DicJsonStr, LIstJsonStr);
+            }
+        }
+    }
+    //유니티 에디터 전용 - 전체 최초 파일 로드.
     public void FlieLoad()
     {
-        
-        Debug.Log("Load 시작 : " + DateTime.Now.ToString());
-        //아이네
         TextAsset DictextAsset = Resources.Load("INEDic") as TextAsset;
         TextAsset ListtextAsset = Resources.Load("INEList") as TextAsset;
         if (DictextAsset != null || ListtextAsset != null)
         {
-            Debug.Log("아이네 Load");
             JsonLoad(Utillity.Isdoll.INE, DictextAsset.text, ListtextAsset.text);
-        }
-        else
-        {
-            Debug.Log("아이네 Load 파일 미감지!");
         }
 
         //징버거
@@ -84,12 +145,7 @@ public class IngameManager : MonoBehaviour
         ListtextAsset = Resources.Load("JingburgerList") as TextAsset;
         if (DictextAsset != null || ListtextAsset != null)
         {
-            Debug.Log("징버거 Load");
             JsonLoad(Utillity.Isdoll.JING, DictextAsset.text, ListtextAsset.text);
-        }
-        else
-        {
-            Debug.Log("징버거 Load 파일 미감지!");
         }
 
         //릴파
@@ -97,12 +153,7 @@ public class IngameManager : MonoBehaviour
         ListtextAsset = Resources.Load("LilpaList") as TextAsset;
         if (DictextAsset != null || ListtextAsset != null)
         {
-            Debug.Log("릴파 Load");
             JsonLoad(Utillity.Isdoll.LiLL, DictextAsset.text, ListtextAsset.text);
-        }
-        else
-        {
-            Debug.Log("릴파 Load 파일 미감지!");
         }
 
         //주르르
@@ -110,12 +161,7 @@ public class IngameManager : MonoBehaviour
         ListtextAsset = Resources.Load("JururuList") as TextAsset;
         if (DictextAsset != null || ListtextAsset != null)
         {
-            Debug.Log("주르르 Load");
             JsonLoad(Utillity.Isdoll.JU, DictextAsset.text, ListtextAsset.text);
-        }
-        else
-        {
-            Debug.Log("주르르 Load 파일 미감지!");
         }
 
         //고세구
@@ -123,12 +169,7 @@ public class IngameManager : MonoBehaviour
         ListtextAsset = Resources.Load("GoseguList") as TextAsset;
         if (DictextAsset != null || ListtextAsset != null)
         {
-            Debug.Log("고세구 Load");
             JsonLoad(Utillity.Isdoll.Go, DictextAsset.text, ListtextAsset.text);
-        }
-        else
-        {
-            Debug.Log("고세구 Load 파일 미감지!");
         }
 
         //비챤
@@ -136,14 +177,8 @@ public class IngameManager : MonoBehaviour
         ListtextAsset = Resources.Load("ViichanList") as TextAsset;
         if (DictextAsset != null || ListtextAsset != null)
         {
-            Debug.Log("고세구 Load");
             JsonLoad(Utillity.Isdoll.VII, DictextAsset.text, ListtextAsset.text);
         }
-        else
-        {
-            Debug.Log("비챤 Load 파일 미감지!");
-        }
-        Debug.Log("Load 끝 : " + DateTime.Now.ToString());
 
     }
 
@@ -221,13 +256,21 @@ public class IngameManager : MonoBehaviour
             case Utillity.Isdoll.INE:
                 {
                     //Dic 저장
-                    string fullpath = Application.dataPath + "\\" + "Resources" + "\\" + "INEDic" + ".Json";
+#if (UNITY_EDITOR)
+                    string fullpath = Application.dataPath + "\\" + "Resources" + "\\" + "INEDic.Json";
+#else
+                    string fullpath = Application.persistentDataPath + "/INEDic" + ".Json";
+#endif
                     StreamWriter fileWrite = new StreamWriter(fullpath, false, Encoding.Unicode);
                     SaveJsonDic("INEDic", fullpath, INE_ClipNameAndURL, fileWrite);
                     fileWrite.Close();
                     //
                     //Ket List저장
-                    fullpath = Application.dataPath + "\\" + "Resources" + "\\" + "INEList" + ".Json";
+#if(UNITY_EDITOR)
+                    fullpath = Application.dataPath + "\\" + "Resources" + "\\" + "INEList.Json";
+#else
+                    fullpath = Application.persistentDataPath + "/INEList" + ".Json";
+#endif
                     fileWrite = new StreamWriter(fullpath, false, Encoding.Unicode);
                     SaveJsonList("INEList", fullpath, INE_URLNameList, fileWrite);
                     fileWrite.Close();
@@ -237,13 +280,21 @@ public class IngameManager : MonoBehaviour
             case Utillity.Isdoll.JING:
                 {
                     //Dic 저장
-                    string fullpath = Application.dataPath + "\\" + "Resources" + "\\" + "JingburgerDic" + ".Json";
+#if (UNITY_EDITOR)
+                    string fullpath = Application.dataPath + "\\" + "Resources" + "\\" + "JingburgerDic.Json";
+#else
+                    string fullpath = Application.persistentDataPath + "/JingburgerDic.Json";
+#endif
                     StreamWriter fileWrite = new StreamWriter(fullpath, false, Encoding.Unicode);
                     SaveJsonDic("JingburgerDic", fullpath, JING_ClipNameAndURL, fileWrite);
                     fileWrite.Close();
                     //
                     //Ket List저장
-                    fullpath = Application.dataPath + "\\" + "Resources" + "\\" + "JingburgerList" + ".Json";
+#if (UNITY_EDITOR)
+                    fullpath = Application.dataPath + "\\" + "Resources" + "\\" + "JingburgerList.Json";
+#else
+                    fullpath = Application.persistentDataPath + "/JingburgerList.Json";
+#endif
                     fileWrite = new StreamWriter(fullpath, false, Encoding.Unicode);
                     SaveJsonList("JingburgerList", fullpath, JING_URLNameList, fileWrite);
                     fileWrite.Close();
@@ -253,13 +304,21 @@ public class IngameManager : MonoBehaviour
             case Utillity.Isdoll.LiLL:
                 {
                     //Dic 저장
-                    string fullpath = Application.dataPath + "\\" + "Resources" + "\\" + "LilpaDic" + ".Json";
+#if (UNITY_EDITOR)
+                    string fullpath = Application.dataPath + "\\" + "Resources" + "\\" + "LilpaDic.Json";
+#else
+                    string fullpath = Application.persistentDataPath + "/LilpaDic.Json";
+#endif
                     StreamWriter fileWrite = new StreamWriter(fullpath, false, Encoding.Unicode);
                     SaveJsonDic("LilpaDic", fullpath, LIL_ClipNameAndURL, fileWrite);
                     fileWrite.Close();
                     //
                     //Ket List저장
-                    fullpath = Application.dataPath + "\\" + "Resources" + "\\" + "LilpaList" + ".Json";
+#if (UNITY_EDITOR)
+                    fullpath = Application.dataPath + "\\" + "Resources" + "\\" + "LilpaList.Json";
+#else
+                    fullpath = Application.persistentDataPath + "/LilpaList.Json";
+#endif
                     fileWrite = new StreamWriter(fullpath, false, Encoding.Unicode);
                     SaveJsonList("LilpaList", fullpath, LIL_URLNameList, fileWrite);
                     fileWrite.Close();
@@ -269,13 +328,21 @@ public class IngameManager : MonoBehaviour
             case Utillity.Isdoll.JU:
                 {
                     //Dic 저장
-                    string fullpath = Application.dataPath + "\\" + "Resources" + "\\" + "JururuDic" + ".Json";
+#if (UNITY_EDITOR)
+                    string fullpath = Application.dataPath + "\\" + "Resources" + "\\" + "JururuDic.Json";
+#else
+                    string fullpath = Application.persistentDataPath + "/JururuDic.Json";
+#endif
                     StreamWriter fileWrite = new StreamWriter(fullpath, false, Encoding.Unicode);
                     SaveJsonDic("JururuDic", fullpath, JU_ClipNameAndURL, fileWrite);
                     fileWrite.Close();
                     //
                     //Ket List저장
-                    fullpath = Application.dataPath + "\\" + "Resources" + "\\" + "JururuList" + ".Json";
+#if (UNITY_EDITOR)
+                    fullpath = Application.dataPath + "\\" + "Resources" + "\\" + "JururuList.Json";
+#else
+                    fullpath = Application.persistentDataPath + "/JururuList.Json";
+#endif
                     fileWrite = new StreamWriter(fullpath, false, Encoding.Unicode);
                     SaveJsonList("JururuList", fullpath, JU_URLNameList, fileWrite);
                     fileWrite.Close();
@@ -285,13 +352,21 @@ public class IngameManager : MonoBehaviour
             case Utillity.Isdoll.Go:
                 {
                     //Dic 저장
-                    string fullpath = Application.dataPath + "\\" + "Resources" + "\\" + "GoseguDic" + ".Json";
+#if (UNITY_EDITOR)
+                    string fullpath = Application.dataPath + "\\" + "Resources" + "\\" + "GoseguDic.Json";
+#else
+                    string fullpath = Application.persistentDataPath + "/GoseguDic.Json";
+#endif
                     StreamWriter fileWrite = new StreamWriter(fullpath, false,Encoding.Unicode);
                     SaveJsonDic("GoseguDic", fullpath, GO_ClipNameAndURL, fileWrite);
                     fileWrite.Close();
                     //
                     //Ket List저장
-                    fullpath = Application.dataPath + "\\" + "Resources" + "\\" + "GoseguList" + ".Json";
+#if (UNITY_EDITOR)
+                    fullpath = Application.dataPath + "\\" + "Resources" + "\\" + "GoseguList.Json";
+#else
+                    fullpath = Application.persistentDataPath + "/GoseguList.Json";
+#endif
                     fileWrite = new StreamWriter(fullpath, false, Encoding.Unicode);
                     SaveJsonList("GoseguList", fullpath , GO_URLNameList, fileWrite);
                     fileWrite.Close();
@@ -301,13 +376,21 @@ public class IngameManager : MonoBehaviour
             case Utillity.Isdoll.VII:
                 {
                     //Dic 저장
-                    string fullpath = Application.dataPath + "\\" + "Resources" + "\\" + "ViichanDic" + ".Json";
+#if (UNITY_EDITOR)
+                    string fullpath = Application.dataPath + "\\" + "Resources" + "\\" + "ViichanDic.Json";
+#else
+                    string fullpath = Application.persistentDataPath + "/ViichanDic.Json";
+#endif
                     StreamWriter fileWrite = new StreamWriter(fullpath, false, Encoding.Unicode);
                     SaveJsonDic("ViichanDic", fullpath, VII_ClipNameAndURL, fileWrite);
                     fileWrite.Close();
                     //
                     //Ket List저장
-                    fullpath = Application.dataPath + "\\" + "Resources" + "\\" + "ViichanList" + ".Json";
+#if (UNITY_EDITOR)
+                    fullpath = Application.dataPath + "\\" + "Resources" + "\\" + "ViichanList.Json";
+#else
+                    fullpath = Application.persistentDataPath + "/ViichanList.Json";
+#endif
                     fileWrite = new StreamWriter(fullpath, false, Encoding.Unicode);
                     SaveJsonList("ViichanList", fullpath, VII_URLNameList, fileWrite);
                     fileWrite.Close();

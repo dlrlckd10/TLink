@@ -23,7 +23,7 @@ SpriteAtlas:
     platformSettings:
     - serializedVersion: 3
       m_BuildTarget: DefaultTexturePlatform
-      m_MaxTextureSize: 4096
+      m_MaxTextureSize: 2048
       m_ResizeAlgorithm: 0
       m_TextureFormat: -1
       m_TextureCompression: 2
@@ -39,7 +39,7 @@ SpriteAtlas:
       blockOffset: 1
       allowAlphaSplitting: 0
       enableRotation: 0
-      enableTightPacking: 1
+      enableTightPacking: 0
     secondaryTextureSettings: {}
     variantMultiplier: 1
     packables:
