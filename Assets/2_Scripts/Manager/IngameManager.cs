@@ -410,6 +410,7 @@ public class IngameManager : MonoBehaviour
         //현재 생성된 자식 객체 삭제.
         if(ClipParent.childCount != 0)
             DeleteClipList();
+        IngameMessageboxUI._instance.IngameMessageTxt("클립 로딩중", true);
         switch (eIsedoll)
         {
             case Utillity.Isdoll.INE:
@@ -469,6 +470,8 @@ public class IngameManager : MonoBehaviour
                 }
                 break;
         }
+        IngameMessageboxUI._instance.IngameMessageTxt("클립 로딩중", false);
+
     }
 
     // 리셋 시 기존 생성된 클립 프리펩 삭제 함수

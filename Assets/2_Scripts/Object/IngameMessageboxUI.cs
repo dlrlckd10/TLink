@@ -17,6 +17,13 @@ public class IngameMessageboxUI : MonoBehaviour
         msgBoxtxt = go.GetComponent<Text>();
     }
 
+    public void IngameMessageTxt(string str , bool IsOn)
+    {
+        gameObject.SetActive(IsOn);
+        if(IsOn)
+            msgBoxtxt.text = str;
+    }
+
     public void IngameMessageTxt(string str)
     {
         gameObject.SetActive(true);

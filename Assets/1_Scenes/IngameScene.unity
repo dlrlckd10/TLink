@@ -711,7 +711,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 1
-  m_ScrollSensitivity: 40
+  m_ScrollSensitivity: 70
   m_Viewport: {fileID: 1484787316}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 1803160148}
@@ -963,7 +963,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1c42e563c207d4d4bb4f313992ebb032, type: 3}
   - {fileID: 21300000, guid: be2214b5db2af58449d583c396c3ff14, type: 3}
   - {fileID: 21300000, guid: 1c11e6d3fb355e04fbef4482e4e583e1, type: 3}
-  - {fileID: 21300000, guid: 8c6eeb99ff20e64478ee6611095cf40a, type: 3}
   - {fileID: 21300000, guid: f66220054ec66824d9865f9f0a3898a6, type: 3}
   - {fileID: 21300000, guid: df8c28462cf9c26429f99d3d6480d0f7, type: 3}
   - {fileID: 21300000, guid: 2953dd93ce88e1347b783178a9074757, type: 3}
